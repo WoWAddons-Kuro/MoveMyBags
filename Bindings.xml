@@ -1,0 +1,8 @@
+<Bindings>
+	<!-- The header and name strings are BINDING_HEADER_MOVEMYBAGSKURO and
+	     BINDING_NAME_MoveMyBagsKuro_TOGGLE_LOCK, set from the locale table in
+	     Options.lua. The body is a global so the client can call it. -->
+	<Binding name="MoveMyBagsKuro_TOGGLE_LOCK" category="BINDING_HEADER_MOVEMYBAGSKURO">
+		MoveMyBagsKuro_ToggleLock();
+	</Binding>
+</Bindings>

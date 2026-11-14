@@ -1,0 +1,51 @@
+## Interface: 120105, 11509, 20506, 50504, 38002, 16001
+## Title: MoveMyBags.Kuro
+## Notes: Drag open bag windows anywhere, combined or separate. Nothing to configure; a few things you can.
+## Version: v1.6.3-kuro.1
+## Author: steveweed79 (fork: Kuro)
+## SavedVariables: MoveMyBagsKuroDB
+## SavedVariablesPerCharacter: MoveMyBagsKuroCharDB
+## Category: Inventory
+## IconTexture: Interface\Icons\INV_Misc_Bag_08
+## AddonCompartmentFunc: MoveMyBagsKuro_OnCompartmentClick
+## AddonCompartmentFuncOnEnter: MoveMyBagsKuro_OnCompartmentEnter
+## AddonCompartmentFuncOnLeave: MoveMyBagsKuro_OnCompartmentLeave
+## X-License: MIT
+## X-Embeds: LibStub, LibEditMode
+
+# One TOC for every flavour: Retail, Classic Era, the Anniversary realms,
+# Mists Classic, Titan and WoW Forever, in that order above. Every number is
+# kept current by .github/workflows/toc-interface.yml, which puts back any it
+# cannot fetch, and tools/check-api-contract.sh also reports when Forever's is
+# behind the client. The addon reads what it needs from the client at runtime
+# and stands down per feature where a client lacks it (no combined window, no
+# addon compartment, no Edit Mode), so the Lua is the same everywhere; the
+# contract script checks each flavour's source.
+
+# Uncomment and fill in to publish to another site. The packager skips any site
+# whose ID is absent, even when its API token is set.
+#   WoWInterface -- the number in wowinterface.com/downloads/infoNNNNN-Name
+# ## X-WoWI-ID: 00000
+#   Wago Addons -- the ID on the project page
+# ## X-Wago-ID: 000000
+
+# Order matters: Locales fills the string table the others read; each Core
+# module publishes what the next one captures; MoveMyBags.lua assembles the
+# API that Options and EditMode read. Bindings.xml is picked up by the client
+# by name and is not listed here. The libraries ship unmodified under Libs/
+# (see Libs/LibEditMode/VENDORED.txt). LibEditMode hooks Edit Mode's frames
+# the moment it loads, so it is gated to the game types its own TOC supports,
+# and EditMode.lua reports it absent everywhere else.
+Libs\LibStub\LibStub.lua
+Libs\LibEditMode\embed.xml [AllowLoadGameType mainline, standard, camelot, tbc, mists]
+Locales.lua
+Core\Util.lua
+Core\Storage.lua
+Core\Layers.lua
+Core\Trace.lua
+Core\Layout.lua
+Core\Drag.lua
+Core\Commands.lua
+MoveMyBags.lua
+Options.lua
+EditMode.lua
