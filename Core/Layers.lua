@@ -27,6 +27,15 @@ local wipe = wipe
 local LEVEL_STEP = 520
 local LEVEL_CEILING = 9000
 
+-- Kuro: a window's own Bg child sits *below* the window (one level on the
+-- combined window, two on ContainerFrameTemplate). A frame level cannot go
+-- below 0, and a child asked for -1 wraps to MAX_FRAME_LEVEL and paints over
+-- the items -- the "black rect" bug. Blizzard parks windows at level 1, so a
+-- band hung from the lowest window puts its bottom rung there and breaks the
+-- reagent bag's Bg. The bottom rung is never allowed below this, which leaves
+-- room for any plausible below-window chrome.
+local LEVEL_FLOOR = 20
+
 -- A window's item buttons belong 10 levels above it (ContainerFrameItemButtonTemplate
 -- declares frameLevel="10"), and the client cannot hold a level above
 -- MAX_FRAME_LEVEL. Why the addon puts them back there is DESIGN.md "Item buttons".
@@ -161,6 +170,12 @@ local function ApplyBand()
     if top > LEVEL_CEILING then
         top = LEVEL_CEILING
     end
+    -- Kuro: the bottom rung (top - span) must stay at or above LEVEL_FLOOR,
+    -- or the lowest window's Bg goes negative and wraps to MAX_FRAME_LEVEL.
+    -- Raising the top is the direction that costs nothing (see above).
+    if top - span < LEVEL_FLOOR then
+        top = LEVEL_FLOOR + span
+    end
 
     for i = 1, count do
         local frame = shownStack[i]
@@ -203,6 +218,12 @@ function core.SeatItems()
     for _, frame in ipairs(Containers()) do
         if frame.moveMyBags == "attached" and frame:IsShown() then
             SeatItemsOf(frame)
+            -- Kuro: then every other child (Bg, NineSlice, title bar) back to
+            -- the offset its template gave it. Trace.lua loads after this file,
+            -- so it is looked up at call time.
+            if core.TraceRepairChildren then
+                core.TraceRepairChildren(frame)
+            end
         end
     end
 end

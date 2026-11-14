@@ -100,6 +100,35 @@ function core.TraceAttach()
     end
 end
 
+-- Put back any child whose level no longer matches the offset it had when we
+-- first saw the window. This is what heals a Bg stranded at MAX_FRAME_LEVEL:
+-- whether the window reached an invalid level through our band or through
+-- Blizzard's own layout, the child is returned to where its template put it.
+-- A child whose restored level would be negative is left alone -- setting it
+-- would just re-trigger the wrap -- so the band's LEVEL_FLOOR is what keeps
+-- this from ever being needed in the first place.
+S.traceRepairCount = 0
+
+function core.TraceRepairChildren(frame)
+    local offsets = childOffsetsByFrame[frame]
+    if not offsets then
+        return
+    end
+    local base = frame:GetFrameLevel() or 0
+    for child, offset in pairs(offsets) do
+        local expected = base + offset
+        if expected >= 0 and expected <= 10000 then
+            local level = child:GetFrameLevel() or 0
+            if level ~= expected then
+                child:SetFrameLevel(expected)
+                S.traceRepairCount = S.traceRepairCount + 1
+                Record(string.format("%s REPAIR %s %d -> %d (window at %d)",
+                    date("%H:%M:%S"), ChildName(frame, child), level, expected, base))
+            end
+        end
+    end
+end
+
 local function DumpLevels()
     local shownOnly = true
     for _, frame in ipairs(Containers()) do
