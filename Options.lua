@@ -36,7 +36,7 @@ end
 -- keybinding
 --------------------------------------------------------------------------
 
-BINDING_HEADER_MOVEMYBAGSKURO = L["MoveMyBags"]
+BINDING_HEADER_MOVEMYBAGSKURO = "MoveMyBags.Kuro"
 BINDING_NAME_MoveMyBagsKuro_TOGGLE_LOCK = L["Lock or unlock bag windows"]
 
 -- Global, because Bindings.xml and the compartment call it by name. Prints
@@ -89,7 +89,7 @@ local function RegisterSettings()
     end
 
     local layout
-    category, layout = Settings.RegisterVerticalLayoutCategory(L["MoveMyBags"])
+    category, layout = Settings.RegisterVerticalLayoutCategory("MoveMyBags.Kuro")
 
     -- The lock, Follow layouts and the per-character flag default to off; the
     -- behaviour toggles default to on, which is what the addon always did.
@@ -197,7 +197,7 @@ function MoveMyBagsKuro_OnCompartmentEnter(_, button)
         return
     end
     GameTooltip:SetOwner(button, "ANCHOR_LEFT")
-    GameTooltip:SetText(L["MoveMyBags"])
+    GameTooltip:SetText("MoveMyBags.Kuro")
     if api.IsReady() then
         GameTooltip:AddLine(api.IsLocked() and L["Windows are locked"] or L["Windows are unlocked"], 1, 1, 1)
     end
