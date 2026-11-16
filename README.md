@@ -1,4 +1,7 @@
-# MoveMyBags
+# MoveMyBags.Kuro
+
+A fork of [MoveMyBags](https://www.curseforge.com/wow/addons/movemybags) by
+steveweed79, maintained by Kuro for WoW Forever.
 
 Make World of Warcraft's bag windows draggable — the separate ones and the
 combined one. Nothing to configure, no layout engine of its own, and a short
