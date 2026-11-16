@@ -1,4 +1,4 @@
--- MoveMyBags -- shared state, the failure guard, and the frame helpers every
+-- MoveMyBags.Kuro -- shared state, the failure guard, and the frame helpers every
 -- other module reads.
 --
 -- The core is split into modules that load in the order the TOC lists them;
@@ -69,7 +69,7 @@ core.Print = Print
 local ERROR_LIMIT = 3
 
 S.errorCount = 0
-S.lastError = nil        -- the message, for /movemybags status
+S.lastError = nil        -- the message, for /mmbk status
 S.broken = false         -- stood down for the session
 
 local function StandDown()

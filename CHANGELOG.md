@@ -147,23 +147,23 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   arranges the field, not the bank. This goes through LibEditMode, which
   ships inside the addon, because Blizzard offers no way for an addon to add
   a frame to Edit Mode itself. One checkbox turns it off. A second, off by
-  default, loads a MoveMyBags layout whenever an Edit Mode layout of the same
+  default, loads a MoveMyBags.Kuro layout whenever an Edit Mode layout of the same
   name becomes active.
 - The bank and a merchant each keep an arrangement of their own. Blizzard
   lays the column out differently beside the bank, and both the bank and a
   merchant open every bag, so a place like that follows your usual
   arrangement until you move a bag there, then takes a copy and goes its own
   way. Shift-right-click there puts a bag on Blizzard's slot for that place
-  only; `/movemybags reset` there forgets the place's arrangement, and
-  `/movemybags reset all` forgets every place. One checkbox turns this off.
-- Named layouts: `/movemybags save <name>`, `load`, `delete` and `layouts`
+  only; `/mmbk reset` there forgets the place's arrangement, and
+  `/mmbk reset all` forgets every place. One checkbox turns this off.
+- Named layouts: `/mmbk save <name>`, `load`, `delete` and `layouts`
   keep whole arrangements — every place together — and switch between them.
 - A per-character arrangement, as a checkbox. It starts from a copy of the
   account-wide one and is kept when switched off again.
 - The saved variables are now version 2: positions per place, the layouts,
   and a per-character file. A version 1 database is migrated in place and
   nothing in it changes.
-- An options page, under Options → AddOns → MoveMyBags or `/movemybags
+- An options page, under Options → AddOns → MoveMyBags.Kuro or `/mmbk
   config`. Six switches and a button: lock the windows, connect windows while
   dragging, close the hole a moved bag leaves, keep the window you are using
   in front, separate arrangements at the bank and a merchant, this character
@@ -171,13 +171,13 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   exactly what the addon did before the page existed. Built on
   Blizzard's Settings API, writing straight into the saved variables; a client
   without that API gets the addon without the page.
-- A keybinding, *Lock or unlock bag windows*, under Keybindings → MoveMyBags.
+- A keybinding, *Lock or unlock bag windows*, under Keybindings → MoveMyBags.Kuro.
   Unbound until you bind it.
 - An entry in the minimap's addon compartment. Left-click opens the options,
   right-click locks or unlocks, and the tooltip shows the lock state.
 - A locale table. Every string a player sees is in `Locales.lua`, keyed by its
   English text with English as the fallback, ready for translations.
-- `/movemybags status` prints what the addon is doing: the client build, the
+- `/mmbk status` prints what the addon is doing: the client build, the
   addon version, whether the layout hook is live, whether compacting is
   measured or standing down and why, the layer and lock state, any errors,
   every saved position and every window on screen with the bag it shows, its
@@ -327,7 +327,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
-- `/movemybags lock` (and `unlock`) stops bag windows being dragged. Saved
+- `/mmbk lock` (and `unlock`) stops bag windows being dragged. Saved
   positions still apply and both resets still work; only the drag is off.
 
 ### Fixed
@@ -380,7 +380,7 @@ See `TESTING.md` if you want to run those before trusting it in a raid.
   account-wide and keyed by bag ID (the combined window gets its own key, so the
   two modes never overwrite each other).
 - Shift-right-click a window to return it to Blizzard's default slot, and
-  `/movemybags` (`/mmb`) with a `reset` argument that clears all positions.
+  `/mmbk` (`/mmb`) with a `reset` argument that clears all positions.
   Resets replay the position recorded from Blizzard's own last layout pass, so
   no Blizzard layout code ever runs on the addon's tainted path.
 - Positions stored in UIParent units and converted on both read and write, so

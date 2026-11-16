@@ -1,4 +1,4 @@
--- MoveMyBags -- the drag, the gestures, and the hooks that attach them to
+-- MoveMyBags.Kuro -- the drag, the gestures, and the hooks that attach them to
 -- Blizzard's windows.
 
 local _, ns = ...
@@ -363,7 +363,7 @@ local function HookTitleBar(frame)
 end
 
 local function Attach(frame)
-    if frame.moveMyBags then
+    if frame.moveMyBagsKuro then
         return
     end
 
@@ -371,10 +371,10 @@ local function Attach(frame)
         -- Remembered so the decision is not re-made on every layout pass. The
         -- flusher still re-anchors this frame to break Blizzard's chain; it
         -- just never gets a saved position applied.
-        frame.moveMyBags = "standby"
+        frame.moveMyBagsKuro = "standby"
         return
     end
-    frame.moveMyBags = "attached"
+    frame.moveMyBagsKuro = "attached"
 
     -- The XML templates already set movable and enableMouse; set them anyway so
     -- the addon does not silently break if a template changes.

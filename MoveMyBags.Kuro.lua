@@ -1,4 +1,4 @@
--- MoveMyBags -- make the open bag windows draggable.
+-- MoveMyBags.Kuro -- make the open bag windows draggable.
 --
 -- This file is the addon's lifecycle: it builds the database on load, installs
 -- the hooks at login, and reacts to the events that change the arrangement in

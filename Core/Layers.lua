@@ -1,4 +1,4 @@
--- MoveMyBags -- layers: one window per layer, the active one on top, and
+-- MoveMyBags.Kuro -- layers: one window per layer, the active one on top, and
 -- every window's item buttons kept above the window they belong to.
 
 local _, ns = ...
@@ -101,7 +101,7 @@ end
 local function AdmitShown()
     wipe(frameByKey)
     for _, frame in ipairs(Containers()) do
-        if frame.moveMyBags == "attached" and frame:IsShown() then
+        if frame.moveMyBagsKuro == "attached" and frame:IsShown() then
             frameByKey[FrameKey(frame)] = frame
         end
     end
@@ -216,7 +216,7 @@ end
 -- buttons go astray under Blizzard's own raise as well as under the band.
 function core.SeatItems()
     for _, frame in ipairs(Containers()) do
-        if frame.moveMyBags == "attached" and frame:IsShown() then
+        if frame.moveMyBagsKuro == "attached" and frame:IsShown() then
             SeatItemsOf(frame)
             -- Kuro: then every other child (Bg, NineSlice, title bar) back to
             -- the offset its template gave it. Trace.lua loads after this file,
@@ -234,7 +234,7 @@ end
 -- since it is hooked straight onto OnMouseDown: any click on a window makes it
 -- the active one.
 function core.Raise(frame)
-    if frame.moveMyBags ~= "attached" or not Option("layers") then
+    if frame.moveMyBagsKuro ~= "attached" or not Option("layers") then
         return
     end
 

@@ -1,4 +1,4 @@
--- MoveMyBags -- the layout pass: snapshot every shown bag, close the hole a
+-- MoveMyBags.Kuro -- the layout pass: snapshot every shown bag, close the hole a
 -- moved one leaves, settle a dropped window, then override the moved ones.
 
 local _, ns = ...
@@ -544,7 +544,7 @@ local function Flush()
                 snapX[frame], snapY[frame] = x, y
                 if SavedFor(frame) then
                     anyMoved = true
-                elseif frame.moveMyBags ~= "attached" then
+                elseif frame.moveMyBagsKuro ~= "attached" then
                     anyStandby = true
                 end
             else

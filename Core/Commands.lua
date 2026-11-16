@@ -1,4 +1,4 @@
--- MoveMyBags -- the slash commands and the status report.
+-- MoveMyBags.Kuro -- the slash commands and the status report.
 
 local ADDON, ns = ...
 local L = ns.L
@@ -45,7 +45,7 @@ local function Status()
     if GetBuildInfo then
         clientVersion, build, _, interface = GetBuildInfo()
     end
-    Print(string.format("status -- MoveMyBags %s on client %s (build %s, interface %s)",
+    Print(string.format("status -- MoveMyBags.Kuro %s on client %s (build %s, interface %s)",
         tostring(version), tostring(clientVersion), tostring(build), tostring(interface)))
 
     Print("layout hook: " .. (S.hooked and "live (UpdateContainerFrameAnchors)"
@@ -118,7 +118,7 @@ local function Status()
             local key = FrameKey(frame)
             local x, y = ReadPos(frame)
             local where = x and string.format("%d,%d", Round(x), Round(y)) or "no rect"
-            local state = frame.moveMyBags or "not attached"
+            local state = frame.moveMyBagsKuro or "not attached"
             if state == "attached" then
                 if S.pos and S.pos[key] then
                     state = "moved"

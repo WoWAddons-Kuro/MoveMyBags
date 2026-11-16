@@ -30,7 +30,7 @@
 # ## X-Wago-ID: 000000
 
 # Order matters: Locales fills the string table the others read; each Core
-# module publishes what the next one captures; MoveMyBags.lua assembles the
+# module publishes what the next one captures; MoveMyBags.Kuro.lua assembles the
 # API that Options and EditMode read. Bindings.xml is picked up by the client
 # by name and is not listed here. The libraries ship unmodified under Libs/
 # (see Libs/LibEditMode/VENDORED.txt). LibEditMode hooks Edit Mode's frames
@@ -46,6 +46,6 @@ Core\Trace.lua
 Core\Layout.lua
 Core\Drag.lua
 Core\Commands.lua
-MoveMyBags.lua
+MoveMyBags.Kuro.lua
 Options.lua
 EditMode.lua

@@ -1,4 +1,4 @@
--- MoveMyBags -- the bag windows in Edit Mode.
+-- MoveMyBags.Kuro -- the bag windows in Edit Mode.
 --
 -- A placeholder per bag the addon has seen, through LibEditMode: a plain
 -- frame the size the bag's window was last seen at, at its saved position or
@@ -7,7 +7,7 @@
 -- here touches a bag window directly. Why the library and not Blizzard's
 -- manager, and why placeholders, is DESIGN.md "Edit Mode". If the library is
 -- missing, or an older copy is what LibStub resolves to, this file does
--- nothing and /movemybags status says so.
+-- nothing and /mmbk status says so.
 --
 -- The library calls this file relies on, as of the vendored copy (see
 -- Libs/LibEditMode/VENDORED.txt):
@@ -115,7 +115,7 @@ local function Placeholder(key)
 
     local default = { point = "BOTTOMLEFT", x = 0, y = 0 }
     defaultsByKey[key] = default
-    lib:AddFrame(frame, OnMoved, default, "MoveMyBags: " .. Label(key))
+    lib:AddFrame(frame, OnMoved, default, "MoveMyBags.Kuro: " .. Label(key))
     lib:AddFrameSettingsButtons(frame, {
         { text = L["Put back"], click = function() PutBack(frame) end },
     })
@@ -197,7 +197,7 @@ local function Setup()
     lib:RegisterCallback("layout", OnLayout)
 end
 
--- For /movemybags status.
+-- For /mmbk status.
 ns.EditModeStatus = function()
     if not lib then
         return "library not found; the bag windows are not in Edit Mode"

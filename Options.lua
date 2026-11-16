@@ -1,4 +1,4 @@
--- MoveMyBags -- the product surface: the Settings panel category, the
+-- MoveMyBags.Kuro -- the product surface: the Settings panel category, the
 -- keybinding, and the addon-compartment entry.
 --
 -- Everything here is optional to the addon working. The defaults match what
@@ -136,8 +136,8 @@ local function RegisterSettings()
     local follow = Settings.RegisterAddOnSetting(category, "MoveMyBagsKuro_FOLLOWLAYOUTS", "followlayouts",
         MoveMyBagsKuroDB, Settings.VarType.Boolean, L["Follow Edit Mode layouts"], followDefault)
     Settings.CreateCheckbox(category, follow,
-        L["When an Edit Mode layout becomes active, including at login, a MoveMyBags layout with the same name is "
-            .. "loaded. Save one with /movemybags save <name>. Off, Edit Mode layouts and bag arrangements are "
+        L["When an Edit Mode layout becomes active, including at login, a MoveMyBags.Kuro layout with the same name is "
+            .. "loaded. Save one with /mmbk save <name>. Off, Edit Mode layouts and bag arrangements are "
             .. "unrelated."])
 
     -- Per character, so it lives in the per-character saved variables.

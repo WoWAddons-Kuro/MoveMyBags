@@ -20,7 +20,7 @@ One addon for every current flavour, verified against each one's UI source:
 
 The Lua is the same everywhere; where a client lacks something (the combined
 window, the addon compartment, Edit Mode) that feature stands down and
-`/movemybags status` says so. On Classic the title bar is part of the window,
+`/mmbk status` says so. On Classic the title bar is part of the window,
 so a plain drag there moves it; Shift is only needed on the bag icon.
 
 ## Usage
@@ -31,12 +31,12 @@ so a plain drag there moves it; Shift is only needed on the bag icon.
 | **Shift**-drag a bag window's title bar or bag icon | The same. Without Shift, a press there opens Blizzard's bag menu, as it always has |
 | Click a bag window's title bar, bag icon or frame | It comes to the front; the others go one layer back |
 | Shift-right-click a bag window, its title bar or its icon | That window returns to Blizzard's default slot |
-| `/movemybags reset` (or `/mmb reset`) | Every window returns to Blizzard's layout. At the bank or a merchant, that place forgets its own arrangement and follows your usual one again |
-| `/movemybags reset all` | The same, in every place at once |
-| `/movemybags save` / `load` / `delete <name>`, `/movemybags layouts` | Keep whole arrangements by name and switch between them |
-| `/movemybags lock` / `unlock` | Stops windows being dragged; resets still work |
-| `/movemybags config` | Opens the options page |
-| `/movemybags status` | What the addon is doing: hooks, saved positions, every window on screen. Paste it into a bug report |
+| `/mmbk reset` (or `/mmb reset`) | Every window returns to Blizzard's layout. At the bank or a merchant, that place forgets its own arrangement and follows your usual one again |
+| `/mmbk reset all` | The same, in every place at once |
+| `/mmbk save` / `load` / `delete <name>`, `/mmbk layouts` | Keep whole arrangements by name and switch between them |
+| `/mmbk lock` / `unlock` | Stops windows being dragged; resets still work |
+| `/mmbk config` | Opens the options page |
+| `/mmbk status` | What the addon is doing: hooks, saved positions, every window on screen. Paste it into a bug report |
 | Never moved a window | Blizzard's default behaviour, completely unmodified |
 
 Drag a window and it moves. The rest of the column closes up on the drop, and
@@ -45,8 +45,8 @@ re-opens the moment you put the window back. There is nothing to turn on.
 ## Options
 
 Everything is on by default and works the way the rest of this page describes.
-The options page (Escape → Options → AddOns → MoveMyBags, or
-`/movemybags config`) has eight switches and a button:
+The options page (Escape → Options → AddOns → MoveMyBags.Kuro, or
+`/mmbk config`) has eight switches and a button:
 
 | Option | Default | Off |
 |---|---|---|
@@ -56,15 +56,15 @@ The options page (Escape → Options → AddOns → MoveMyBags, or
 | Keep the window you are using in front | on | Windows are drawn in whatever order the client has them |
 | Separate arrangements at the bank and at a merchant | on | One arrangement is used everywhere |
 | Show the bag windows in Edit Mode | on | Edit Mode leaves the bags alone |
-| Follow Edit Mode layouts | off | — (on: an Edit Mode layout loads the MoveMyBags layout of the same name) |
+| Follow Edit Mode layouts | off | — (on: an Edit Mode layout loads the MoveMyBags.Kuro layout of the same name) |
 | This character keeps its own arrangement | off | — (on: this character's bags are arranged on their own, starting from a copy of the account's) |
 | Reset positions | | Puts every window back, in every place and both bag modes |
 
 Two other ways in:
 
-- **Keybinding.** Options → Keybindings → MoveMyBags → *Lock or unlock bag
+- **Keybinding.** Options → Keybindings → MoveMyBags.Kuro → *Lock or unlock bag
   windows*. Unbound until you bind it.
-- **Addon compartment.** MoveMyBags is in the minimap's addon menu. Left-click
+- **Addon compartment.** MoveMyBags.Kuro is in the minimap's addon menu. Left-click
   opens the options; right-click locks or unlocks.
 
 Settings are account-wide, except *This character keeps its own arrangement*,
@@ -100,7 +100,7 @@ arrangement of its own. Until you move a bag there, it follows your usual
 arrangement; the first time you do, that place takes a copy and goes its own
 way. From then on, moving a bag in the field does not move it at the bank, and
 the other way round. Shift-right-click at the bank puts that bag on Blizzard's
-bank slot without touching where it sits in the field, and `/movemybags reset`
+bank slot without touching where it sits in the field, and `/mmbk reset`
 at the bank makes the bank follow your usual arrangement again. Turn
 *Separate arrangements at the bank and at a merchant* off in the options to use
 one arrangement everywhere.
@@ -119,7 +119,7 @@ has no placeholder, because there is nothing to show for it. Open your bags
 once and they all appear.
 
 Tick *Follow Edit Mode layouts* and an Edit Mode layout becoming active,
-including at login, loads a MoveMyBags layout with the same name, if you have
+including at login, loads a MoveMyBags.Kuro layout with the same name, if you have
 saved one. Off by default: it resets the bags to that snapshot every time,
 which is the feature, and a surprise to anyone who did not ask for it.
 
@@ -129,9 +129,9 @@ frame to Edit Mode itself, and doing it by hand taints the whole Edit Mode UI.
 
 ## Layouts and characters
 
-`/movemybags save Raid night` keeps the whole arrangement — field, bank and
-merchant together — under a name; `/movemybags load Raid night` brings it back,
-`/movemybags layouts` lists what you have, and `/movemybags delete` removes
+`/mmbk save Raid night` keeps the whole arrangement — field, bank and
+merchant together — under a name; `/mmbk load Raid night` brings it back,
+`/mmbk layouts` lists what you have, and `/mmbk delete` removes
 one. A loaded layout is a copy: change it and save again to keep the change.
 
 Arrangements are account-wide. Tick *This character keeps its own arrangement*
@@ -156,7 +156,7 @@ the top and clamped back onto whatever you placed it beside.
 - **If something goes wrong, the addon gets out of the way.** An error inside
   the addon is reported once, and after a few in one session it stops touching
   the windows until you `/reload`. Your saved positions are kept.
-  `/movemybags status` shows what happened.
+  `/mmbk status` shows what happened.
 - **Bags shrink as more open.** That is Blizzard's behaviour and is left alone.
   A moved bag stays on the same screen spot at whatever size Blizzard gives it.
 - **Bank open.** When the bank window is open, Blizzard shrinks and shifts the
@@ -184,13 +184,13 @@ the addon works and why it is built the way it is.
 ## Installing from source
 
 Copy or symlink this repository into
-`World of Warcraft/_retail_/Interface/AddOns/` as a folder named **MoveMyBags**.
+`World of Warcraft/_retail_/Interface/AddOns/` as a folder named **MoveMyBags.Kuro**.
 The folder name and the `.toc` filename must match exactly or the client will
 not list the addon.
 
 ## Translating
 
-MoveMyBags is translated on CurseForge: open the project's **Localization**
+MoveMyBags.Kuro is translated on CurseForge: open the project's **Localization**
 page, pick your language and translate the strings there. Every release picks
 up whatever has been translated, and a string nobody has translated yet shows
 in English, so a partial translation is still useful.
@@ -199,7 +199,7 @@ German, French, Spanish, Brazilian Portuguese, Russian, Korean and both
 Chinese scripts start from machine-assisted drafts. They are the strings most
 worth checking: anything that reads oddly to a native speaker is a fix worth
 making. Keep the `%s` and `%d` markers in the same order as the English, and
-leave `/movemybags` commands in English, since they are typed as they are.
+leave `/mmbk` commands in English, since they are typed as they are.
 
 Behind that, every string a player sees is listed in `Locales.lua`, keyed by
 its English text. `.github/workflows/localization.yml` sends the list to

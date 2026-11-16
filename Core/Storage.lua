@@ -1,4 +1,4 @@
--- MoveMyBags -- the database: contexts, named layouts, the per-character
+-- MoveMyBags.Kuro -- the database: contexts, named layouts, the per-character
 -- arrangement, resets, and the per-bag position API.
 
 local _, ns = ...
@@ -137,7 +137,7 @@ end
 -- A window we stood down on never gets a saved position applied, even if one is
 -- left over in the database from before Blizzard took the job over.
 local function SavedFor(frame)
-    if frame.moveMyBags ~= "attached" then
+    if frame.moveMyBagsKuro ~= "attached" then
         return nil
     end
     return S.pos[FrameKey(frame)]
