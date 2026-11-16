@@ -6,7 +6,7 @@
 ## SavedVariables: MoveMyBagsKuroDB
 ## SavedVariablesPerCharacter: MoveMyBagsKuroCharDB
 ## Category: Inventory
-## IconTexture: Interface\Icons\INV_Misc_Bag_08
+## IconTexture: Interface\AddOns\MoveMyBags.Kuro\Assets\MoveMyBags.Kuro_Icon.png
 ## AddonCompartmentFunc: MoveMyBagsKuro_OnCompartmentClick
 ## AddonCompartmentFuncOnEnter: MoveMyBagsKuro_OnCompartmentEnter
 ## AddonCompartmentFuncOnLeave: MoveMyBagsKuro_OnCompartmentLeave
