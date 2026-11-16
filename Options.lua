@@ -28,6 +28,37 @@ local api = ns.api
 local PREFIX = "|cff33ff99MoveMyBags.Kuro|r: "
 local COMMAND = "|cffffff78%s|r"
 
+local PROJECT_URL = "https://github.com/WoWAddons-Kuro/MoveMyBags"
+
+-- A popup whose edit box holds the project URL, selected, so Ctrl+C copies
+-- it. The text is pinned: typing over it puts the URL straight back.
+if StaticPopupDialogs then
+    StaticPopupDialogs["MOVEMYBAGSKURO_PROJECT_URL"] = {
+        text = "MoveMyBags.Kuro -- " .. (ns.L["Press Ctrl+C to copy the project URL"]),
+        button1 = CLOSE or "Close",
+        hasEditBox = true,
+        editBoxWidth = 360,
+        OnShow = function(self)
+            local box = self.editBox or self.EditBox
+            box:SetText(PROJECT_URL)
+            box:HighlightText()
+            box:SetFocus()
+        end,
+        EditBoxOnTextChanged = function(box)
+            if box:GetText() ~= PROJECT_URL then
+                box:SetText(PROJECT_URL)
+                box:HighlightText()
+            end
+        end,
+        EditBoxOnEscapePressed = function(box) box:GetParent():Hide() end,
+        EditBoxOnEnterPressed = function(box) box:GetParent():Hide() end,
+        timeout = 0,
+        whileDead = true,
+        hideOnEscape = true,
+        preferredIndex = 3,
+    }
+end
+
 local function Print(msg)
     print(PREFIX .. msg)
 end
@@ -91,13 +122,15 @@ local function RegisterSettings()
     local layout
     category, layout = Settings.RegisterVerticalLayoutCategory("MoveMyBags.Kuro")
 
-    -- The lock, Follow layouts and the per-character flag default to off; the
-    -- behaviour toggles default to on, which is what the addon always did.
-    -- All are plain booleans, written here and read by the core on every
-    -- pass: in MoveMyBagsKuroDB, except the per-character flag.
+    -- Kuro: the lock and Follow layouts default to on, so the bags are
+    -- arranged in Edit Mode and nowhere else unless the player opts out; the
+    -- behaviour toggles default to on as they always did, and only the
+    -- per-character flag defaults to off. All are plain booleans, written
+    -- here and read by the core on every pass: in MoveMyBagsKuroDB, except
+    -- the per-character flag.
     AddCheckbox("locked", L["Lock bag windows"],
         L["Stops bag windows being dragged. Saved positions still apply, and the resets still work."],
-        Settings.Default.False, function(value)
+        Settings.Default.True, function(value)
             api.SetLocked(value)
         end)
     AddCheckbox("snap", L["Connect windows while dragging"],
@@ -159,6 +192,19 @@ local function RegisterSettings()
             end,
             L["Every window returns to Blizzard's own slot, in every context and both bag modes. "
                 .. "Shift-right-click a window to put just that one back."],
+            addSearchTags))
+
+        -- The project page. Settings has no link control, so the button opens
+        -- a popup with the URL selected in an edit box, ready for Ctrl+C.
+        layout:AddInitializer(CreateSettingsButtonInitializer(L["Project page"],
+            L["Copy GitHub URL"], function()
+                if StaticPopup_Show then
+                    StaticPopup_Show("MOVEMYBAGSKURO_PROJECT_URL")
+                else
+                    Print(PROJECT_URL)
+                end
+            end,
+            PROJECT_URL,
             addSearchTags))
     end
 

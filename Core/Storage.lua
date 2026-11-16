@@ -217,15 +217,30 @@ end
 function core.InitDB()
     MoveMyBagsKuroDB = MoveMyBagsKuroDB or {}
     MoveMyBagsKuroDB.closeGaps = nil   -- the 1.0 toggle; "compact" below replaced it
-    -- A real boolean, since the Settings checkbox stores one and the two must
-    -- agree. Databases from before stored true-or-nil; nil reads as false.
-    MoveMyBagsKuroDB.locked = MoveMyBagsKuroDB.locked == true
     -- The behaviour toggles are true, false or absent; anything else is a
     -- hand-edit and reads as the default.
     for _, key in ipairs({ "snap", "compact", "layers", "contexts", "editmode", "followlayouts" }) do
         if type(MoveMyBagsKuroDB[key]) ~= "boolean" then
             MoveMyBagsKuroDB[key] = nil
         end
+    end
+
+    -- Kuro defaults: the windows are locked and Edit Mode layouts are followed,
+    -- so out of the box the bags are arranged in Edit Mode and nowhere else.
+    -- Applied once per database (kuroDefaultsVersion), so a database carried
+    -- over from before these defaults -- or from the original addon's false
+    -- defaults -- is switched over, and a player who then turns either off
+    -- stays off. Both are real booleans, since the Settings checkboxes store
+    -- one and the two must agree.
+    local KURO_DEFAULTS_VERSION = 1
+    if (tonumber(MoveMyBagsKuroDB.kuroDefaultsVersion) or 0) < KURO_DEFAULTS_VERSION then
+        MoveMyBagsKuroDB.locked = true
+        MoveMyBagsKuroDB.followlayouts = true
+        MoveMyBagsKuroDB.kuroDefaultsVersion = KURO_DEFAULTS_VERSION
+    end
+    MoveMyBagsKuroDB.locked = MoveMyBagsKuroDB.locked == true
+    if MoveMyBagsKuroDB.followlayouts == nil then
+        MoveMyBagsKuroDB.followlayouts = true
     end
 
     -- Version 1 kept one flat table of positions. Version 2 keeps one per

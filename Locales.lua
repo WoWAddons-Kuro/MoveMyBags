@@ -75,6 +75,9 @@ local locale = (GetLocale and GetLocale()) or "enUS"
 --   "standing down for this session after %d errors. The bag windows are Blizzard's again until you %s."
 --   "status failed: %s"
 --   "options are not available on this client."
+--   "Project page"
+--   "Copy GitHub URL"
+--   "Press Ctrl+C to copy the project URL"
 
 if locale == "enUS" then
     return

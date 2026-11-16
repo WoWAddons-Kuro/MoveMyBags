@@ -1,5 +1,7 @@
 # MoveMyBags.Kuro
 
+**Project:** https://github.com/WoWAddons-Kuro/MoveMyBags
+
 A fork of [MoveMyBags](https://www.curseforge.com/wow/addons/movemybags) by
 steveweed79, maintained by Kuro for WoW Forever.
 

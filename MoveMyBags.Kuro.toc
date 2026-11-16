@@ -11,6 +11,7 @@
 ## AddonCompartmentFuncOnEnter: MoveMyBagsKuro_OnCompartmentEnter
 ## AddonCompartmentFuncOnLeave: MoveMyBagsKuro_OnCompartmentLeave
 ## X-License: MIT
+## X-Website: https://github.com/WoWAddons-Kuro/MoveMyBags
 ## X-Embeds: LibStub, LibEditMode
 
 # One TOC for every flavour: Retail, Classic Era, the Anniversary realms,
