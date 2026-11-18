@@ -1,7 +1,7 @@
 ## Interface: 120105, 11509, 20506, 50504, 38002, 16001
 ## Title: MoveMyBags.Kuro
 ## Notes: Drag open bag windows anywhere, combined or separate. Nothing to configure; a few things you can.
-## Version: v2026.11.16.1253
+## Version: v2026.11.18.1500
 ## Author: steveweed79 (fork: Kuro)
 ## SavedVariables: MoveMyBagsKuroDB
 ## SavedVariablesPerCharacter: MoveMyBagsKuroCharDB
