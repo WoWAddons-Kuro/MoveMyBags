@@ -1,4 +1,4 @@
-## Interface: 120105, 11509, 20506, 50504, 38002, 16001
+## Interface: 16001
 ## Title: MoveMyBags.Kuro
 ## Notes: Drag open bag windows anywhere, combined or separate. Nothing to configure; a few things you can.
 ## Version: @project-version@
